@@ -39,11 +39,13 @@ table {
 
 button {
     padding: 5px 10px;
-    margin-left: 5px;
+    margin-right: 5px !important;
     cursor: pointer;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
+    border-radius:5px !important;
+    font-size: 12px !important;
 }
 
 button.decline {

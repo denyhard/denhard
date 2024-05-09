@@ -1,3 +1,5 @@
+var searchdata;
+
 document.addEventListener("DOMContentLoaded", function () {
   isAuthenticated(); // Check authentication
 
@@ -14,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem("jwt");
         window.location.href = "login.html";
       }
+      searchdata = data
       data.forEach((journal) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `<td>
@@ -24,13 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
         </small></div> 
         </td><td>${journal.description}</td><td>${
           journal.status || ""
-        }</td><td><div>${
+        }</td><td ><div><textarea class="form-control" disabled rows="6" cols="12">${
           journal.revision.length == 0 ? "-" : journal.revision
-        }</div>
+        }</textarea></div>
           </td>
           <td>
           <div class="d-flex">
-                  <button type="button" class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#modaledit" data-id="${
+                  <button type="button" ${journal.status == 'approved' ? 'disabled' : ''} class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#modaledit" data-id="${
                     journal.id
                   }" data-title="${journal.title}" data-description="${
           journal.description
@@ -39,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   </button>
                   <div class="w-25">
                   </div>
-                  <button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#modaldelete" data-id="${
+                  <button type="button" ${journal.status == 'approved' ? 'disabled' : ''} class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#modaldelete" data-id="${
                     journal.id
                   }">
                       Delete
@@ -75,6 +78,95 @@ function attachModalListeners() {
     });
   });
 }
+
+document
+  .getElementById("search")
+  .addEventListener("input", function (event) {
+    event.preventDefault();
+    // Implement fetch API to post the changes
+    var search = document.getElementById("search").value;
+    const journalList = document.getElementById("journal-list");
+    if (search.length == 0) {
+      
+      document.getElementById("journal-list").innerHTML = ''
+      searchdata.forEach((journal) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>
+        <div>${journal.title}</div>
+          <div><small><a href="/api/journals/${
+            journal.id
+          }/download" target="_blank">Download File</a>
+        </small></div> 
+        </td><td>${journal.description}</td><td>${
+          journal.status || ""
+        }</td><td ><div>${
+          journal.revision.length == 0 ? "-" : journal.revision
+        }</div>
+          </td>
+          <td>
+          <div class="d-flex">
+                  <button type="button" ${journal.status == 'approved' ? 'disabled' : ''} class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#modaledit" data-id="${
+                    journal.id
+                  }" data-title="${journal.title}" data-description="${
+          journal.description
+        }" data-status="${journal.status}">
+                      Edit
+                  </button>
+                  <div class="w-25">
+                  </div>
+                  <button type="button" ${journal.status == 'approved' ? 'disabled' : ''} class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#modaldelete" data-id="${
+                    journal.id
+                  }">
+                      Delete
+                  </button>
+              </div></td>`;
+        journalList.appendChild(tr);
+      });
+      attachModalListeners();
+      return  
+    }
+    if (search.length < 2) {
+      return 
+    }
+
+    document.getElementById("journal-list").innerHTML = ''
+
+    searchdata.forEach((journal) => {
+      if (journal.title.includes(search)) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>
+        <div>${journal.title}</div>
+          <div><small><a href="/api/journals/${
+            journal.id
+          }/download" target="_blank">Download File</a>
+        </small></div> 
+        </td><td>${journal.description}</td><td>${
+          journal.status || ""
+        }</td><td ><div>${
+          journal.revision.length == 0 ? "-" : journal.revision
+        }</div>
+          </td>
+          <td>
+          <div class="d-flex">
+                  <button type="button" ${journal.status == 'approved' ? 'disabled' : ''} class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#modaledit" data-id="${
+                    journal.id
+                  }" data-title="${journal.title}" data-description="${
+          journal.description
+        }" data-status="${journal.status}">
+                      Edit
+                  </button>
+                  <div class="w-25">
+                  </div>
+                  <button type="button" ${journal.status == 'approved' ? 'disabled' : ''} class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#modaldelete" data-id="${
+                    journal.id
+                  }">
+                      Delete
+                  </button>
+              </div></td>`;
+        journalList.appendChild(tr);
+      }
+    });
+  });
 
 // Add event listeners to forms for submitting changes
 document

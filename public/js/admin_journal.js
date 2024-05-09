@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('You Are Not Admin')
             return window.location.href = 'login.html';
         }
-        loadJournals();
+        // loadJournals();
     }
 });
 
@@ -17,25 +17,10 @@ function loadJournals() {
     })
     .then(response => response.json())
     .then(data => {
-        const tbody = document.getElementById('journals-table').getElementsByTagName('tbody')[0];
+        const tbody = document.getElementById('journals-table').getElementsByTagName('user-list')[0];
         data.forEach(journal => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${journal.id}</td>
-                <td>
-                <div>${journal.title}</div>
-                <div><small><a href="/api/journals/${
-                    journal.id
-                  }/download" target="_blank">Download File</a>
-                </small></div> 
-                </td>
-                <td>${journal.description}</td>
-                <td>${journal.status}</td>
-                <td>
-                    <button onclick="updateStatus(${journal.id}, 'approved')">Approve</button>
-                    <button onclick="updateStatus(${journal.id}, 'declined')" class="decline">Decline</button>
-                </td>
-            `;
+          
             tbody.appendChild(tr);
         });
     })

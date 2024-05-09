@@ -128,8 +128,12 @@ const updateJournal = async (req, res) => {
     if (!journal) {
       return res.status(404).send({ error: "Journal not found" });
     }
-    journal.revision = revision;
-    journal.status = status;
+    if (revision) {
+      journal.revision = revision;
+    }
+    if (status) {
+      journal.status = status;
+    }
     await journal.save();
     res.send(journal);
   } catch (error) {
