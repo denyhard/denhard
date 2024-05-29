@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            alert('Journal added successfully!');
+            alert('Paper added successfully!');
             window.location.href = 'user.html'; // Redirect to user dashboard or any appropriate page
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Failed to add journal.');
+            alert('Failed to add Paper.');
         });
     });
 });

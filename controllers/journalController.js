@@ -105,7 +105,7 @@ const updateJournalUser = async (req, res) => {
     const { title, description } = req.body;
     const journal = await Journal.findByPk(journalId);
     if (!journal) {
-      return res.status(404).send({ error: "Journal not found" });
+      return res.status(404).send({ error: "Paper not found" });
     }
 
     journal.title = title;
@@ -126,7 +126,7 @@ const updateJournal = async (req, res) => {
     const { revision, status } = req.body;
     const journal = await Journal.findByPk(journalId);
     if (!journal) {
-      return res.status(404).send({ error: "Journal not found" });
+      return res.status(404).send({ error: "Paper not found" });
     }
     if (revision) {
       journal.revision = revision;
@@ -147,7 +147,7 @@ const downloadJournalFile = async (req, res) => {
     const journal = await Journal.findByPk(journalId);
 
     if (!journal) {
-      return res.status(404).send({ error: "Journal not found" });
+      return res.status(404).send({ error: "Paper not found" });
     }
 
     const filePath = path.resolve(journal.fileUrl); // Ensure the path is correctly resolved
@@ -173,7 +173,7 @@ const deleteJournal = async (req, res) => {
     const { journalId } = req.params; // Extract the journalId from request parameters
     const journal = await Journal.findByPk(journalId);
     if (!journal) {
-      return res.status(404).send({ error: "Journal not found" });
+      return res.status(404).send({ error: "Paper not found" });
     }
     // Delete the file associated with the journal
     const filePath = journal.fileUrl;
@@ -192,19 +192,19 @@ const deleteJournal = async (req, res) => {
         .destroy()
         .then(() => {
           res.send({
-            message: "Journal and associated file deleted successfully",
+            message: "Paper and associated file deleted successfully",
           });
         })
         .catch((error) => {
           res.status(500).send({
-            message: "Failed to delete the journal entry",
+            message: "Failed to delete the Paper entry",
             details: error.message,
           });
         });
     });
   } catch (error) {
     res.status(500).send({
-      message: "Failed to delete the journal",
+      message: "Failed to delete the Paper",
       details: error.message,
     });
   }

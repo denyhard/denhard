@@ -63,15 +63,15 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .then(response => {
               if (response.ok) {
-                  alert('Journal status updated!');
+                  alert('Paper status updated!');
                   location.reload();
               } else {
-                  alert('Failed to update journal status.');
+                  alert('Failed to update Paper status.');
               }
           })
           .catch(error => {
               console.error('Error:', error);
-              alert('Error updating journal status.');
+              alert('Error updating Paper status.');
           });
         });
     }
