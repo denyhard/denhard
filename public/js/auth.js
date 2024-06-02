@@ -20,6 +20,7 @@ function isAuthenticated() {
 
 function isAuthenticatedUser() {
     const token = localStorage.getItem('jwt');
+    console.log(token)
     if (token) {
         window.location.href = 'user.html'; // Redirect ke login jika tidak ada token
     }

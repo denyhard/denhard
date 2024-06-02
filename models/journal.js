@@ -17,7 +17,7 @@ Journal.init(
 const User = require('./user')
 
 // Establish the relationship
-Journal.belongsTo(User, { foreignKey: 'userId' });
-User.hasMany(Journal, { foreignKey: 'userId' });
+Journal.belongsTo(User, { foreignKey: 'userId',  onDelete: 'CASCADE' });
+User.hasMany(Journal, { foreignKey: 'userId',  onDelete: 'CASCADE' });
 
 module.exports = Journal;
