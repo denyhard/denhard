@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
       data.forEach((user) => {
         // console.log(user)
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${user.title}</td><td>${user.description}</td><td>${
+        tr.innerHTML = `<td><div>${user.title} </div> <div>${user.title}</div>
+        <div><small><a href="/api/journals/${
+          user.id
+        }/download" target="_blank">Download File</a>
+      </small></div> </td><td>${user.description}</td><td>${
           user.status || ""
         }</td><td><div><textarea class="form-control" disabled rows="6" cols="12">
         ${
