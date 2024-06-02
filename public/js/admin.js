@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       data.forEach((user) => {
         // console.log(user)
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td><div>${user.title} </div> <div>${user.title}</div>
+        tr.innerHTML = `<td><div>${user.title} </div>
         <div><small><a href="/api/journals/${
           user.id
         }/download" target="_blank">Download File</a>
