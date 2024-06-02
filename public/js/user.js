@@ -1,7 +1,14 @@
 var searchdata;
 
 document.addEventListener("DOMContentLoaded", function () {
-  isAuthenticated(); // Check authentication
+  // isAuthenticated(); // Check authentication
+  if (isAuthenticated()) {
+    if (isAdmin()) {
+        // alert('You Are Not Admin')
+        return window.location.href = 'admin.html';
+    }
+    // loadJournals();
+}
 
   fetch("/api/journals/my", {
     method: "GET",
