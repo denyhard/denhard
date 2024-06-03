@@ -34,9 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
         </small></div> 
         </td><td>${journal.description}</td><td>${
           journal.status || ""
-        }</td><td ><div><textarea class="form-control" disabled rows="6" cols="12">${
+        }</td><td ><div><div class="form-control" disabled rows="6" cols="12">${
           journal.revision.length == 0 ? "-" : journal.revision
-        }</textarea></div>
+        }</div></div>
           </td>
           <td>
           <div class="d-flex">

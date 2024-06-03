@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }/download" target="_blank">Download File</a>
       </small></div> </td><td>${user.description}</td><td>${
           user.status || ""
-        }</td><td><div><textarea class="form-control" disabled rows="6" cols="12">
+        }</td><td><div><div class="div" disabled rows="6" cols="12">
         ${user.revision.length == 0 ? "-" : user.revision}
-        </textarea></div></td>
+        </div></div></td>
         <td>
         <div class="d-flex">
         <div style="margin-right:5px !important">
