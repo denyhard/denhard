@@ -119,9 +119,9 @@ document.getElementById("search").addEventListener("input", function (event) {
       const tr = document.createElement("tr");
       tr.innerHTML = `<td>${user.title}</td><td>${user.description}</td><td>${
         user.status || ""
-      }</td><td><textarea class="form-control" disabled rows="6" cols="12">
+      }</td><td><div class="form-control" >
         ${user.revision.length == 0 ? "-" : user.revision}
-        </textarea></td>
+        </div></td>
         <td>
         <div class="d-flex">
         <div style="margin-right:5px !important">
@@ -155,9 +155,9 @@ document.getElementById("search").addEventListener("input", function (event) {
       const tr = document.createElement("tr");
       tr.innerHTML = `<td>${user.title}</td><td>${user.description}</td><td>${
         user.status || ""
-      }</td><td><div><textarea class="form-control" disabled rows="6" cols="12">
+      }</td><td><div><div class="form-control">
         ${user.revision.length == 0 ? "-" : user.revision}
-        </textarea></div></td>
+        </div></div></td>
         <td>
         <div class="d-flex">
         <div style="margin-right:5px !important">
