@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
         <td>
         <div class="d-flex">
         <div style="margin-right:5px !important">
-        <button  onclick="updateStatus(${user.id}, 'approved')">Approve</button>
+        <button class="btn btn-success" onclick="updateStatus(${user.id}, 'approved')">Approve</button>
         </div>
         <div style="margin-right:5px !important">
-        <button onclick="updateStatus(${
+        <button class="btn btn-danger" onclick="updateStatus(${
           user.id
         }, 'declined')" class="decline">Decline</button>
         </div>
-        <div style="margin-right:5px !important"><button onclick="addRevision(${
+        <div style="margin-right:5px !important"><button class="btn btn-primary" onclick="addRevision(${
           user.id
         })" data-bs-toggle="modal" data-bs-target="#modaladd">Add Revision</button></div>
         </div>

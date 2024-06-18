@@ -5,16 +5,27 @@ const User = require("../models/user");
 const register = async (req, res) => {
   try {
     const { email, password, institusi } = req.body;
+
+    // Check if the user already exists
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).send({ error: "User already registered" });
+    }
+
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 8);
+
+    // Create the new user
     const user = await User.create({
       email,
       password: hashedPassword,
       institusi,
       admin: false,
     });
+
     res.status(201).send(user);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error: "Registration failed", details: error.message });
   }
 };
 

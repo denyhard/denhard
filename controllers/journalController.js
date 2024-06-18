@@ -99,6 +99,19 @@ const getAllJournals = async (req, res) => {
   }
 };
 
+const getAllApproved =  async (req, res) => {
+  try {
+    const approvedJournals = await Journal.findAll({
+      where: { status: "approved" },
+      attributes: ["id","title", "description"]
+    });
+    res.json(approvedJournals);
+  } catch (error) {
+    console.error("Error fetching approved journals:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 const updateJournalUser = async (req, res) => {
   try {
     const { journalId } = req.params;
@@ -217,5 +230,6 @@ module.exports = {
   updateJournal,
   updateJournalUser,
   deleteJournal,
-  downloadJournalFile
+  downloadJournalFile,
+  getAllApproved
 };
