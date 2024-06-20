@@ -12,8 +12,20 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/journals/(.*)",
       "dest": "server.js"
+    },
+    {
+      "src": "/api/users/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/",
+      "dest": "public/index.html"
+    },
+    {
+      "src": "/(.+)",
+      "dest": "public/$1"
     }
   ]
 }
