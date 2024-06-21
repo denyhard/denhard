@@ -7,6 +7,9 @@ const journalRoutes = require("./routes/journalRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
 app.use("/api/journals", journalRoutes);
