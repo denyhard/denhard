@@ -11,11 +11,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 app.use("/api/users", userRoutes);
 app.use("/api/journals", journalRoutes);
 
 app.use(express.static("public"));
-app.use(express.json());
+// app.use(express.json());
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
